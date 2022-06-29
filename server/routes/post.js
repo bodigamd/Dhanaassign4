@@ -7,7 +7,7 @@ const router = express.Router();
 router
   .post('/create', async (req, res) => {
     try {
-      const post = await Post.newPost(req.body.username, req.body.content);
+      const post = await Post.newPost(req.body.UserId, req.body.PostId, req.body.PostName, req.body.PostDate, req.body.description);
       res.send({...post});
     } catch(error) {
       res.status(401).send({ message: error.message });
@@ -25,7 +25,7 @@ router
 
   .put('/update', async (req, res) => {
     try {
-      const post = await Post.updatePost(req.body.pid, req.body.newcontent);
+      const post = await Post.updatePost(req.body.pid, req.body.newdescription);
       res.send({...post});
     } catch(error) {
       res.status(401).send({ message: error.message });

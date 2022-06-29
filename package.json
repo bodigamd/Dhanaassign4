@@ -4,14 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "server": "nodemon index.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
-  "author": "chandu",
+  "author": "dhanlaxmi",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "mongoose": "^6.3.6"
+  },
+  "devDependencies": {
+    "concurrently": "^7.2.2"
   }
 }

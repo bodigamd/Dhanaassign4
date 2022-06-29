@@ -1,13 +1,12 @@
-// 1. importing the libraries
 const express = require("express");
-const User = require('../models/user'); //accesses functions in user model file
+const User = require('../models/user'); 
 const router = express.Router();
 
-// 2. create all routes to access database
+
 router
   .post('/login', async (req, res) => {
     try {
-      const user = await User.login(req.body.username, req.body.password);
+      const user = await User.login(req.body.UserId, req.body.password);
       res.send({...user, password: undefined});
     } catch(error) {
       res.status(401).send({ message: error.message });
@@ -16,7 +15,7 @@ router
 
   .post('/register', async (req, res) => {
     try {
-      const user = await User.register(req.body.username, req.body.email, req.body.password);
+      const user = await User.register(req.body.UserId, req.body.FirstName, req.body.LastName, req.body.password);
       res.send({...user, password: undefined});
     } catch(error) {
       res.status(401).send({ message: error.message }); 
@@ -25,7 +24,7 @@ router
 
   .put('/update', async (req, res) => {
     try {
-      const user = await User.updatePassword(req.body.id, req.body.password);
+      const user = await User.updatePassword(req.body.newUserId, req.body.password);
       res.send({...user, password: undefined});
     } catch(error) {
       res.status(401).send({ message: error.message });
@@ -41,5 +40,5 @@ router
     }
   })
 
-// 3. export router for use in index.js
+
 module.exports = router;
